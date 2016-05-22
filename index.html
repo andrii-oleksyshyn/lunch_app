@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+    <head>
+        <meta charset="UTF-8">
+        <title>Lunch app</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/app.css">
+    </head>
+    <body>
+        <div class="container" ng-controller="LunchController as vm">
+            <div>
+                <div class="jumbotron">
+                    <h1>Lunch App</h1>
+                    <p>Check where your teammates are going to have lunch!</p>
+                </div>
+            </div>
+            <div class="lunch-app row">
+                <div class="col-md-4">
+                    <form name="lunchForm" novalidate>
+                        <div class="form-group">
+                            <label for="name">Your name and surname</label>
+                            <input type="text" class="form-control" id="name" ng-model="vm.formData.name" placeholder="Name Surname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="project">Your project</label>
+                            <input type="text" class="form-control" id="project" ng-model="vm.formData.project" placeholder="Project" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="team">Your team</label>
+                            <input type="text" class="form-control" id="team" ng-model="vm.formData.team" placeholder="Team" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="place">Desired place</label>
+                            <input type="text" class="form-control" id="place" ng-model="vm.formData.place" placeholder="Place" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Optimal time</label>
+                            <input type="text" class="form-control" id="time" ng-model="vm.formData.time" placeholder="Time" required>
+                        </div>
+                        <input type="submit" class="btn btn-success btn-block" ng-disabled="lunchForm.$invalid" ng-click="vm.sendFormData()" value="Join us!">
+                    </form>
+                </div>
+                <div class="col-md-8">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Person</th>
+                                    <th>Project</th>
+                                    <th>Team</th>
+                                    <th>Place</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="lunch in vm.lunchResults track by $index">
+                                    <td>{{ lunch.name }}</td>
+                                    <td>{{ lunch.project }}</td>
+                                    <td>{{ lunch.team }}</td>
+                                    <td>{{ lunch.place }}</td>
+                                    <td>{{ lunch.time }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn btn-danger pull-right" ng-click="vm.removeResults()">Clear the table</button>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="js/app.module.js"></script>
+        <script src="js/lunch.controller.js"></script>
+        <script src="js/lunch.service.js"></script>
+    </body>
+</html>

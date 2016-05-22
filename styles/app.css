@@ -1,0 +1,7 @@
+.container .jumbotron, .container-fluid .jumbotron {
+    padding-left: 5%;
+}
+
+.lunch-app .btn {
+    margin-bottom: 15px;
+}
